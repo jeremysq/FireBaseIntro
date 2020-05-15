@@ -56,6 +56,7 @@
       <v-card
         v-if="signUpError === true"
         class="my-3"
+        @click="resetSignUpError()"
       >
         <v-card-text
           class="subtitle-2"
@@ -71,6 +72,7 @@
       <v-card
         v-if="signUpError === false"
         class="my-3"
+        @click="resetSignUpError()"
       >
         <v-card-text
           class="subtitle-2"
@@ -102,7 +104,7 @@
             />
             <v-text-field
               v-model="loginPassword"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
               :type="show1 ? 'text' : 'password'"
               :rules="passwordRules"
               label="Password"
@@ -126,6 +128,7 @@
       <v-card
         v-if="loginError === true"
         class="my-3"
+        @click="resetLoginError()"
       >
         <v-card-text
           class="subtitle-2"
@@ -141,11 +144,34 @@
       <v-card
         v-if="loginError === false"
         class="my-3"
+        @click="resetLoginError()"
       >
         <v-card-text
           class="subtitle-2"
         >
           Your account was logged in successfully!
+        </v-card-text>
+      </v-card>
+      <v-card
+        v-if="signOutError === false"
+        class="my-3"
+        @click="resetSignOutError()"
+      >
+        <v-card-text
+          class="subtitle-2"
+        >
+          Your account was signed out successfully!
+        </v-card-text>
+      </v-card>
+      <v-card
+        v-if="signOutError === true"
+        class="my-3"
+        @click="resetSignOutError()"
+      >
+        <v-card-text
+          class="subtitle-2"
+        >
+          There was an error signing out.
         </v-card-text>
       </v-card>
     </v-flex>
@@ -183,6 +209,7 @@ export default {
       emailLogin: state => state.emailLogin,
       passwordLogin: state => state.passwordLogin,
       loginError: state => state.loginError,
+      signOutError: state => state.signOutError,
       errorLog: state => state.errorLog
     })
   },
@@ -194,6 +221,15 @@ export default {
     submitLogin () {
       const payload = [this.loginEmail, this.loginPassword]
       this.$store.dispatch('loginUser', payload)
+    },
+    resetSignUpError () {
+      this.$store.dispatch('resetSignUpError')
+    },
+    resetLoginError () {
+      this.$store.dispatch('resetLoginError')
+    },
+    resetSignOutError () {
+      this.$store.dispatch('resetSignOutError')
     }
   }
 }

@@ -18,11 +18,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-## Specifically for the Firebase Introduction Application
-# In ./store/index.js, you will need to add your own Firebase configuration settings to firebaseConfig.
-# To initialize the application:
-$ cd FirebaseIntro
-$ cd JSite
-$ cd JSFirebase
-$ yarn dev

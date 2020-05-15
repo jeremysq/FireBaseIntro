@@ -38,6 +38,7 @@ export const state = {
   emailLogin: null,
   passwordLogin: null,
   loginError: null,
+  signOutError: null,
   errorLog: null
 }
 
@@ -64,6 +65,15 @@ export const mutations = {
   resetDocumentError (state) {
     state.documentError = null
   },
+  resetSignUpError (state) {
+    state.signUpError = null
+  },
+  resetLoginError (state) {
+    state.loginError = null
+  },
+  resetSignOutError (state) {
+    state.signOutError = null
+  },
   setDocumentError (state, value) {
     state.documentError = value
   },
@@ -72,6 +82,9 @@ export const mutations = {
   },
   setLoginError (state, value) {
     state.loginError = value
+  },
+  setSignOutError (state, value) {
+    state.signOutError = value
   },
   setErrorLog (state, error) {
     state.errorLog = error
@@ -167,13 +180,34 @@ export const actions = {
   loginUser (context, payload) {
     return new Promise((resolve) => {
       console.log(admin)
-      admin.signInWithEmailAndPassword(payload[0], payload[1])
+      const userDetails = admin.signInWithEmailAndPassword(payload[0], payload[1])
         .catch((err) => {
           context.commit('setErrorLog', err)
           context.commit('setLoginError', true)
         })
+      console.log(userDetails)
       context.commit('setLoginError', false)
       resolve()
     })
+  },
+  signOut (context) {
+    admin.signOut()
+      .then(() => {
+        context.commit('setSignOutError', false)
+      }).catch((err) => {
+        console.log(err)
+        context.commit('setSignOutError', true)
+        context.commit('setloginError', null)
+        context.commit('setErrorLog', err)
+      })
+  },
+  resetLoginError (context) {
+    context.commit('resetLoginError')
+  },
+  resetSignOutError (context) {
+    context.commit('resetSignOutError')
+  },
+  resetSignUpError (context) {
+    context.commit('resetSignUpError')
   }
 }
