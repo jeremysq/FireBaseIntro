@@ -1,4 +1,5 @@
 ### Introduction to FireBase
+[START HERE!](https://github.com/jeremysq/FirebaseIntro/blob/master/FirebaseIntro.ipynb)
 #### You can run the .ipynb file using jupyter notebook, or github's built-in renderer to get started.
 
 ## Specifically for the Firebase Introduction Application
