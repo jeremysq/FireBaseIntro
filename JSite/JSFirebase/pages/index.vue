@@ -5,9 +5,7 @@
     align-center
   >
     <v-flex
-      xs12
-      sm8
-      md6
+      xs8
     >
       <v-card>
         <v-card-title
@@ -119,27 +117,23 @@
         </v-card-text>
       </v-card>
     </v-flex>
-    <v-flex
+    <v-card
       v-if="documentError === true"
-      xs8
       class="mt-3"
+      width="300"
+      @click="resetDocumentError"
     >
-      <v-card
-        width="300"
-        @click="resetDocumentError"
+      <v-card-text
+        class="subtitle-2 text-center"
       >
-        <v-card-text
-          class="subtitle-2 text-center"
-        >
-          There was an error doing this operation.
-        </v-card-text>
-        <v-card-text
-          class="overline"
-        >
-          {{ errorLog }}
-        </v-card-text>
-      </v-card>
-    </v-flex>
+        There was an error doing this operation.
+      </v-card-text>
+      <v-card-text
+        class="overline"
+      >
+        {{ errorLog }}
+      </v-card-text>
+    </v-card>
   </v-layout>
 </template>
 

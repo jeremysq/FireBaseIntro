@@ -39,6 +39,7 @@ export const state = {
   passwordLogin: null,
   loginError: null,
   signOutError: null,
+  isLoggedIn: false,
   errorLog: null
 }
 
@@ -88,6 +89,9 @@ export const mutations = {
   },
   setErrorLog (state, error) {
     state.errorLog = error
+  },
+  setIsLoggedIn (state, value) {
+    state.isLoggedIn = value
   }
 }
 
@@ -123,6 +127,9 @@ export const actions = {
       }
       context.commit('doAdd', payload)
       resolve()
+    }).catch((err) => {
+      context.commit('setErrorLog', err)
+      context.commit('setDocumentError', true)
     })
   },
   doRead (context, data) {
@@ -145,6 +152,9 @@ export const actions = {
           }
         })
       resolve()
+    }).catch((err) => {
+      context.commit('setErrorLog', err)
+      context.commit('setDocumentError', true)
     })
   },
   doDelete (context, data) {
@@ -157,6 +167,9 @@ export const actions = {
       console.log(docRef)
       context.commit('setDocumentError', false)
       resolve()
+    }).catch((err) => {
+      context.commit('setErrorLog', err)
+      context.commit('setDocumentError', true)
     })
   },
   resetDocumentError (context) {
@@ -184,9 +197,11 @@ export const actions = {
         .catch((err) => {
           context.commit('setErrorLog', err)
           context.commit('setLoginError', true)
+          context.commit('resetSignOutError')
         })
       console.log(userDetails)
       context.commit('setLoginError', false)
+      context.commit('setIsLoggedIn', true)
       resolve()
     })
   },
@@ -194,6 +209,7 @@ export const actions = {
     admin.signOut()
       .then(() => {
         context.commit('setSignOutError', false)
+        context.commit('setIsLoggedIn', false)
       }).catch((err) => {
         console.log(err)
         context.commit('setSignOutError', true)

@@ -5,10 +5,16 @@
       fixed
       app
     >
+      <v-toolbar-title
+        class="white--text"
+      >
+        Firebase Demonstration
+      </v-toolbar-title>
+      <v-spacer />
       <v-btn
         color="primary"
         small
-        class="mx-3"
+        class="ml-3"
         @click="toFirestore"
       >
         Firestore
@@ -16,13 +22,13 @@
       <v-btn
         color="primary"
         small
+        class="ml-3"
         @click="toAuth"
-        class="mx-3"
       >
         Authentication
       </v-btn>
       <v-btn
-        v-if="loginError === false"
+        v-if="isLoggedIn === true"
         color="primary"
         small
         class="mx-3"
@@ -30,15 +36,6 @@
       >
         Sign Out
       </v-btn>
-      <v-layout
-        justify-center
-      >
-        <h1
-          class="subtitle-2 text-center"
-        >
-          FireBase Demonstration
-        </h1>
-      </v-layout>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -65,7 +62,7 @@ export default {
   },
   computed: {
     ...mapState({
-      loginError: state => state.loginError
+      isLoggedIn: state => state.isLoggedIn
     })
   },
   methods: {

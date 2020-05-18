@@ -53,33 +53,39 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card
-        v-if="signUpError === true"
-        class="my-3"
-        @click="resetSignUpError()"
+    </v-flex>
+    <v-card
+      v-if="signUpError === true"
+      class="my-3"
+      @click="resetSignUpError()"
+    >
+      <v-card-text
+        class="subtitle-2"
       >
-        <v-card-text
-          class="subtitle-2"
-        >
-          There was an error creating your account.
-        </v-card-text>
-        <v-card-text
-          class="overline"
-        >
-          {{ errorLog }}
-        </v-card-text>
-      </v-card>
-      <v-card
-        v-if="signUpError === false"
-        class="my-3"
-        @click="resetSignUpError()"
+        There was an error creating your account.
+      </v-card-text>
+      <v-card-text
+        class="overline"
       >
-        <v-card-text
-          class="subtitle-2"
-        >
-          Your account was created successfully!
-        </v-card-text>
-      </v-card>
+        {{ errorLog }}
+      </v-card-text>
+    </v-card>
+    <v-card
+      v-if="signUpError === false"
+      class="my-3"
+      @click="resetSignUpError()"
+    >
+      <v-card-text
+        class="subtitle-2"
+      >
+        Your account was created successfully!
+      </v-card-text>
+    </v-card>
+    <v-flex
+      xs12
+      sm8
+      md6
+    >
       <v-card
         elevation="7"
         outlined
@@ -105,7 +111,7 @@
             <v-text-field
               v-model="loginPassword"
               :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="show1 ? 'text' : 'password'"
+              :type="show2 ? 'text' : 'password'"
               :rules="passwordRules"
               label="Password"
               required
@@ -125,56 +131,56 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card
-        v-if="loginError === true"
-        class="my-3"
-        @click="resetLoginError()"
-      >
-        <v-card-text
-          class="subtitle-2"
-        >
-          There was an error logging in.
-        </v-card-text>
-        <v-card-text
-          class="overline"
-        >
-          {{ errorLog }}
-        </v-card-text>
-      </v-card>
-      <v-card
-        v-if="loginError === false"
-        class="my-3"
-        @click="resetLoginError()"
-      >
-        <v-card-text
-          class="subtitle-2"
-        >
-          Your account was logged in successfully!
-        </v-card-text>
-      </v-card>
-      <v-card
-        v-if="signOutError === false"
-        class="my-3"
-        @click="resetSignOutError()"
-      >
-        <v-card-text
-          class="subtitle-2"
-        >
-          Your account was signed out successfully!
-        </v-card-text>
-      </v-card>
-      <v-card
-        v-if="signOutError === true"
-        class="my-3"
-        @click="resetSignOutError()"
-      >
-        <v-card-text
-          class="subtitle-2"
-        >
-          There was an error signing out.
-        </v-card-text>
-      </v-card>
     </v-flex>
+    <v-card
+      v-if="loginError === true"
+      class="my-3"
+      @click="resetLoginError()"
+    >
+      <v-card-text
+        class="subtitle-2"
+      >
+        There was an error logging in.
+      </v-card-text>
+      <v-card-text
+        class="overline"
+      >
+        {{ errorLog }}
+      </v-card-text>
+    </v-card>
+    <v-card
+      v-if="loginError === false"
+      class="my-3"
+      @click="resetLoginError()"
+    >
+      <v-card-text
+        class="subtitle-2"
+      >
+        Your account was logged in successfully!
+      </v-card-text>
+    </v-card>
+    <v-card
+      v-if="signOutError === false"
+      class="my-3"
+      @click="resetSignOutError()"
+    >
+      <v-card-text
+        class="subtitle-2"
+      >
+        Your account was signed out successfully!
+      </v-card-text>
+    </v-card>
+    <v-card
+      v-if="signOutError === true"
+      class="my-3"
+      @click="resetSignOutError()"
+    >
+      <v-card-text
+        class="subtitle-2"
+      >
+        There was an error signing out.
+      </v-card-text>
+    </v-card>
   </v-layout>
 </template>
 
